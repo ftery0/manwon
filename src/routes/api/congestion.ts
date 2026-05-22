@@ -174,11 +174,11 @@ async function fetchAllRows(serviceKey: string): Promise<ApiRow[]> {
 // ─── 요청 핸들러 ────────────────────────────────────────────────────────────
 
 export async function GET(_event: APIEvent) {
-  const serviceKey = process.env.PUBLIC_DATA_API_KEY;
+  const serviceKey = process.env.DATA_API_KEY;
 
   if (!serviceKey) {
     return new Response(
-      JSON.stringify({ error: "PUBLIC_DATA_API_KEY 환경변수가 설정되지 않았습니다." }),
+      JSON.stringify({ error: "DATA_API_KEY 환경변수가 설정되지 않았습니다." }),
       { status: 503, headers: { "Content-Type": "application/json" } }
     );
   }
