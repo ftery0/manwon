@@ -1,25 +1,18 @@
 import { A } from "@solidjs/router";
+import { Button } from "~/components/ui/Button";
+import { ROUTES } from "~/config/routes";
 
 export default function NotFound() {
   return (
-    <main class="text-center mx-auto text-gray-700 p-4">
-      <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">Not Found</h1>
-      <p class="mt-8">
-        Visit{" "}
-        <a href="https://solidjs.com" target="_blank" class="text-sky-600 hover:underline">
-          solidjs.com
-        </a>{" "}
-        to learn how to build Solid apps.
+    <div class="flex min-h-[60vh] flex-col items-center justify-center gap-4 px-5 text-center">
+      <p class="text-5xl font-bold text-(--color-primary)">404</p>
+      <h1 class="text-xl font-semibold text-(--color-text)">페이지를 찾을 수 없어요</h1>
+      <p class="text-sm text-(--color-text-muted)">
+        주소를 다시 확인하거나 홈으로 돌아가세요.
       </p>
-      <p class="my-4">
-        <A href="/" class="text-sky-600 hover:underline">
-          Home
-        </A>
-        {" - "}
-        <A href="/about" class="text-sky-600 hover:underline">
-          About Page
-        </A>
-      </p>
-    </main>
+      <Button as="a" href={ROUTES.HOME}>
+        홈으로
+      </Button>
+    </div>
   );
 }
