@@ -33,7 +33,7 @@ export function RouteForm(props: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      class="rounded-2xl border border-(--color-border) bg-white p-6 shadow-sm"
+      class="rounded-2xl bg-white p-6 shadow-card"
     >
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <StationSearch
@@ -51,12 +51,12 @@ export function RouteForm(props: Props) {
       </div>
 
       <div class="mt-4 flex flex-col gap-1.5">
-        <label class="text-sm font-medium text-(--color-text)">출발 시각</label>
+        <label class="text-sm font-semibold text-(--color-text)">출발 시각</label>
         <input
           type="time"
           value={time()}
           onInput={(e) => setTime((e.currentTarget as HTMLInputElement).value)}
-          class="w-40 rounded-xl border border-(--color-border) bg-white px-4 py-2.5 text-sm text-(--color-text) outline-none transition-all focus:border-(--color-primary) focus:ring-2 focus:ring-(--color-primary)/20"
+          class="w-44 rounded-xl bg-(--color-bg-soft) px-4 py-3 text-sm font-medium text-(--color-text) outline-none transition focus:bg-white focus:outline-2 focus:outline-(--color-primary)"
         />
       </div>
 

@@ -36,10 +36,17 @@ export function CongestionTimeline(props: Props) {
   return (
     <div class="mt-6">
       {/* 타임라인 */}
-      <div class="rounded-2xl border border-(--color-border) bg-white p-6">
-        <h2 class="mb-5 text-base font-semibold text-(--color-text)">
-          경로 혼잡도 타임라인
-        </h2>
+      <div class="rounded-2xl bg-white p-6 shadow-card">
+        <div class="mb-5 flex items-center justify-between">
+          <h2 class="text-base font-extrabold text-(--color-text)">
+            경로 혼잡도 타임라인
+          </h2>
+          <Show when={props.result.transferCount > 0}>
+            <span class="rounded-lg bg-(--color-bg-soft) px-2.5 py-1 text-[11px] font-bold text-(--color-text-muted)">
+              환승 {props.result.transferCount}회
+            </span>
+          </Show>
+        </div>
 
         <ol class="relative">
           <For each={props.result.stops}>
@@ -131,14 +138,14 @@ export function CongestionTimeline(props: Props) {
 
       {/* 요약 카드 */}
       <div class="mt-4 grid grid-cols-3 gap-3">
-        <div class="rounded-xl border border-(--color-border) bg-(--color-bg-subtle) p-4 text-center">
+        <div class="rounded-2xl bg-(--color-bg-subtle) p-4 text-center">
           <p class="text-xs text-(--color-text-muted)">총 소요시간</p>
           <p class="mt-1 text-xl font-bold text-(--color-text)">
             {props.result.totalMinutes}분
           </p>
         </div>
 
-        <div class="rounded-xl border border-(--color-border) bg-(--color-bg-subtle) p-4 text-center">
+        <div class="rounded-2xl bg-(--color-bg-subtle) p-4 text-center">
           <p class="text-xs text-(--color-text-muted)">평균 혼잡도</p>
           <p
             class="mt-1 text-xl font-bold"
@@ -148,7 +155,7 @@ export function CongestionTimeline(props: Props) {
           </p>
         </div>
 
-        <div class="rounded-xl border border-(--color-border) bg-(--color-bg-subtle) p-4 text-center">
+        <div class="rounded-2xl bg-(--color-bg-subtle) p-4 text-center">
           <p class="text-xs text-(--color-text-muted)">가장 붐비는 구간</p>
           <p class="mt-1 text-sm font-bold text-(--color-text)">
             {props.result.busiestStop.station}

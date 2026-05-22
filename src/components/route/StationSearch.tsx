@@ -1,5 +1,6 @@
-import { createSignal, For, Show, onCleanup } from "solid-js";
-import { LINE2_STATIONS } from "~/lib/route-planner";
+import { createSignal, For, Show } from "solid-js";
+import { ALL_STATION_NAMES } from "~/lib/route-planner";
+import { getStationsByName } from "~/lib/stations";
 
 interface Props {
   value: string;
@@ -14,9 +15,15 @@ export function StationSearch(props: Props) {
 
   const filtered = () => {
     const q = props.value.trim();
-    if (!q) return LINE2_STATIONS.slice(0, 10);
-    return LINE2_STATIONS.filter((s) => s.includes(q));
+    if (!q) return ALL_STATION_NAMES.slice(0, 12);
+    return ALL_STATION_NAMES.filter((s) => s.includes(q)).slice(0, 20);
   };
+
+  function getLinesFor(name: string): string {
+    const list = getStationsByName(name);
+    const unique = Array.from(new Set(list.map((s) => s.line))).sort();
+    return unique.map((l) => `${l}호선`).join("·");
+  }
 
   function select(station: string) {
     props.onChange(station);
@@ -36,7 +43,6 @@ export function StationSearch(props: Props) {
   }
 
   function handleBlur() {
-    // 약간의 딜레이로 클릭 이벤트가 먼저 처리되도록
     setTimeout(() => setOpen(false), 150);
   }
 
@@ -61,7 +67,7 @@ export function StationSearch(props: Props) {
 
   return (
     <div class="flex flex-col gap-1.5">
-      <label class="text-sm font-medium text-(--color-text)">{props.label}</label>
+      <label class="text-sm font-semibold text-(--color-text)">{props.label}</label>
       <div class="relative">
         <input
           type="text"
@@ -72,11 +78,11 @@ export function StationSearch(props: Props) {
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
           autocomplete="off"
-          class="w-full rounded-xl border border-(--color-border) bg-white px-4 py-2.5 text-sm text-(--color-text) outline-none transition-all placeholder:text-(--color-text-muted) focus:border-(--color-primary) focus:ring-2 focus:ring-(--color-primary)/20"
+          class="w-full rounded-xl bg-(--color-bg-soft) px-4 py-3 text-sm font-medium text-(--color-text) outline-none transition placeholder:text-(--color-text-subtle) focus:bg-white focus:outline-2 focus:outline-(--color-primary)"
         />
         <Show when={open() && filtered().length > 0}>
           <ul
-            class="absolute z-50 mt-1 max-h-48 w-full overflow-y-auto rounded-xl border border-(--color-border) bg-white py-1 shadow-lg"
+            class="absolute z-50 mt-2 max-h-64 w-full overflow-y-auto rounded-xl bg-white py-1 shadow-card-lg"
             role="listbox"
           >
             <For each={filtered()}>
@@ -85,14 +91,16 @@ export function StationSearch(props: Props) {
                   role="option"
                   aria-selected={cursor() === idx()}
                   onMouseDown={() => select(station)}
-                  class={`cursor-pointer px-4 py-2 text-sm transition-colors ${
+                  class={`flex cursor-pointer items-center justify-between px-4 py-2.5 text-sm transition-colors ${
                     cursor() === idx()
-                      ? "bg-(--color-primary-soft) text-(--color-primary)"
-                      : "text-(--color-text) hover:bg-(--color-bg-subtle)"
+                      ? "bg-(--color-primary-soft)"
+                      : "hover:bg-(--color-bg-soft)"
                   }`}
                 >
-                  {station}
-                  <span class="ml-2 text-xs text-(--color-text-muted)">2호선</span>
+                  <span class="font-semibold text-(--color-text)">{station}</span>
+                  <span class="ml-2 text-xs text-(--color-text-muted)">
+                    {getLinesFor(station)}
+                  </span>
                 </li>
               )}
             </For>
