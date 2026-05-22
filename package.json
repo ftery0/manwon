@@ -5,7 +5,9 @@
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "preview": "vinxi preview"
+    "preview": "vinxi preview",
+    "data:fetch": "tsx scripts/fetch-data.ts",
+    "data:preprocess": "tsx scripts/preprocess.ts"
   },
   "dependencies": {
     "@solidjs/router": "^0.15.0",
@@ -15,7 +17,10 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.7",
-    "tailwindcss": "^4.0.7"
+    "@types/node": "^25.9.1",
+    "tailwindcss": "^4.0.7",
+    "tsx": "^4.19.3",
+    "typescript": "^6.0.3"
   },
   "engines": {
     "node": ">=22"
