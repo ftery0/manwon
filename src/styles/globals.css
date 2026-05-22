@@ -1,0 +1,67 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+@import "tailwindcss";
+
+@theme {
+  /* Toss 시그니처 블루 */
+  --color-primary: #3182f6;
+  --color-primary-soft: #e8f3ff;
+  --color-primary-strong: #1b64da;
+  --color-primary-dark: #1b64da;
+
+  /* Toss 텍스트 */
+  --color-text: #191f28;
+  --color-text-muted: #6b7684;
+  --color-text-subtle: #8b95a1;
+
+  /* Toss 배경/표면 */
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f9fafb;
+  --color-bg-soft: #f2f4f6;
+  --color-surface: #ffffff;
+
+  /* Toss 보더 (거의 안 쓰임) */
+  --color-border: #e5e8eb;
+  --color-border-soft: #f2f4f6;
+
+  /* 혼잡도 */
+  --color-congestion-low: #22c55e;
+  --color-congestion-mid: #f59e0b;
+  --color-congestion-high: #ef4444;
+  --color-congestion-low-soft: #ecfdf5;
+  --color-congestion-mid-soft: #fffbeb;
+  --color-congestion-high-soft: #fef2f2;
+
+  /* Toss 스타일 그림자 */
+  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-card-lg: 0 4px 12px rgba(0, 0, 0, 0.05), 0 12px 32px rgba(0, 0, 0, 0.06);
+  --shadow-button: 0 4px 12px rgba(49, 130, 246, 0.24);
+
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Toss 스타일 카드 그림자 유틸 */
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+.shadow-card-lg {
+  box-shadow: var(--shadow-card-lg);
+}
+.shadow-toss-btn {
+  box-shadow: var(--shadow-button);
+}
