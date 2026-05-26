@@ -1,32 +1,19 @@
-# SolidStart
+# manwon (만원)
 
-Everything you need to build a Solid project, powered by [`solid-start`](https://start.solidjs.com);
+> 만원인지 한산한지, 타기 전에 확인하세요.
 
-## Creating a project
+서울 수도권 지하철의 시간대별 혼잡도를 시각화하는 웹 서비스입니다.
 
-```bash
-# create a new project in the current directory
-npm init solid@latest
+- **역별 혼잡도** — 노선도에서 역을 클릭하면 24시간 혼잡도 그래프 확인
+- **경로 혼잡도** — 출발/도착역을 입력하면 환승 포함 정거장별 혼잡도 타임라인
 
-# create a new project in my-app
-npm init solid@latest my-app
-```
+공공데이터 기반, 수도권 1~8호선 254개역 지원.
 
-## Developing
+---
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## 개발
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm install
+pnpm dev
 ```
-
-## Building
-
-Solid apps are built with _presets_, which optimise your project for deployment to different environments.
-
-By default, `npm run build` will generate a Node app that you can run with `npm start`. To use a different preset, add it to the `devDependencies` in `package.json` and specify in your `app.config.js`.
-
-## This project was created with the [Solid CLI](https://github.com/solidjs-community/solid-cli)
